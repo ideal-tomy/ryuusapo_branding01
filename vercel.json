@@ -1,9 +1,7 @@
 {
   "version": 2,
   "name": "ryuusapo-branding01",
-  "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm install",
   "routes": [
     {
       "src": "/(.*)",
