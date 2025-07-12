@@ -105,121 +105,26 @@
   }
 }
 
-.interview__video-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-  margin-bottom: 80px;
+.interview__intro {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin-bottom: 60px;
+  text-align: center;
   
   @include tablet {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    margin-bottom: 60px;
+    padding: 30px;
+    margin-bottom: 50px;
   }
   
   @include mobile {
-    gap: 30px;
+    padding: 24px;
     margin-bottom: 40px;
   }
 }
 
-.interview__video-wrapper {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.interview__video {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 20px;
-  
-  &:focus {
-    outline: 3px solid var(--accent-color);
-    outline-offset: 4px;
-  }
-}
-
-.interview__video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 47, 95, 0.7), rgba(0, 160, 166, 0.7));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  cursor: pointer;
-  
-  &:hover {
-    opacity: 1;
-  }
-  
-  &.show {
-    opacity: 1;
-  }
-}
-
-.interview__play-btn {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  
-  &:hover {
-    transform: scale(1.1);
-    background: white;
-  }
-  
-  &:focus {
-    outline: 3px solid var(--accent-color);
-    outline-offset: 4px;
-  }
-  
-  @include mobile {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-.interview__play-icon {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-left: 4px; // 視覚的な中央揃え
-  
-  @include mobile {
-    font-size: 1.5rem;
-  }
-}
-
-// =============================================================================
-// 動画情報
-// =============================================================================
-
-.interview__video-info {
-  padding: 20px 0;
-}
-
-.interview__video-title {
+.interview__intro-title {
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--primary-color);
@@ -231,7 +136,7 @@
   }
 }
 
-.interview__video-description {
+.interview__intro-description {
   font-size: 1.1rem;
   color: var(--text-color-secondary);
   line-height: 1.7;
@@ -242,9 +147,10 @@
   }
 }
 
-.interview__video-stats {
+.interview__stats {
   display: flex;
   gap: 30px;
+  justify-content: center;
   
   @include mobile {
     flex-direction: column;
@@ -663,7 +569,7 @@
 // アニメーション
 // =============================================================================
 
-.interview__video-container,
+.interview__intro,
 .interview__highlights,
 .interview__testimonials,
 .interview__cta {
@@ -693,7 +599,7 @@
 // =============================================================================
 
 @media (prefers-reduced-motion: reduce) {
-  .interview__video-container,
+  .interview__intro,
   .interview__highlights,
   .interview__testimonials,
   .interview__cta,
@@ -701,7 +607,6 @@
     transition: none;
   }
   
-  .interview__video-wrapper,
   .interview__timeline-item,
   .interview__testimonial-card {
     &:hover {
@@ -719,16 +624,6 @@
 // =============================================================================
 
 @include mobile {
-  .interview__video-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .interview__video-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-  }
-  
   .interview__testimonials-grid {
     grid-template-columns: 1fr;
   }
