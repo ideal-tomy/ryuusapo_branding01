@@ -8,7 +8,7 @@
     "npm": ">=8.0.0"
   },
   "scripts": {
-    "build": "npm run build:prepare && npm run build:css && npm run build:js && npm run copy:assets",
+    "build": "npm run build:prepare && npm run build:css && npm run build:js && npm run copy:assets && npm run copy:html",
     "build:prepare": "node -e \"const fs = require('fs'); ['dist', 'dist/css', 'dist/js', 'dist/images'].forEach(dir => fs.mkdirSync(dir, {recursive: true}))\"",
     "build:css": "node node_modules/sass/sass.js src/scss/main.scss dist/css/main.css --style=compressed",
     "build:js": "node node_modules/terser/bin/terser src/js/main.js -o dist/js/main.js --compress --mangle",

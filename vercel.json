@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "name": "ryuusapo-branding01",
-  "outputDirectory": "dist",
-  "routes": [
+  "builds": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
     }
   ]
 } 
