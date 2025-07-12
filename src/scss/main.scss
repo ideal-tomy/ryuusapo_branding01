@@ -1,0 +1,44 @@
+// =============================================================================
+// 留学サポート ブランディング LP - メインSCSSファイル
+// =============================================================================
+
+// 1. 抽象化レイヤー (Variables, Mixins, Functions)
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+
+// 2. ベースレイヤー (Reset, Typography, etc.)
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/base';
+
+// 3. レイアウト
+@import 'layouts/header';
+@import 'layouts/footer';
+@import 'layouts/grid';
+
+// 4. コンポーネント
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/forms';
+@import 'components/modals';
+@import 'components/accordion';
+@import 'components/slider';
+@import 'components/placeholders';
+
+// 5. セクション固有スタイル
+@import 'layouts/preheader';
+@import 'layouts/hero';
+@import 'layouts/story';
+@import 'layouts/vision';
+@import 'layouts/services';
+@import 'layouts/experience';
+@import 'layouts/impact';
+@import 'layouts/interview';
+@import 'layouts/values';
+@import 'layouts/service-details';
+@import 'layouts/faq';
+@import 'layouts/footer-cta';
+
+// 6. ユーティリティ
+@import 'abstracts/utilities'; 

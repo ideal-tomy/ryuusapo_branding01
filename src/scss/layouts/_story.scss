@@ -1,0 +1,331 @@
+// =============================================================================
+// Story Layout - 留学サポート ブランディング LP
+// =============================================================================
+
+// ストーリーのスタイル（後で実装） 
+
+// ストーリーセクション
+.story {
+  padding: 8rem 0;
+  background: linear-gradient(
+    180deg,
+    #fafafa 0%,
+    #ffffff 50%,
+    #fafafa 100%
+  );
+  position: relative;
+  overflow: hidden;
+  
+  // 背景装飾
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="%23e5e7eb" opacity="0.3"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+    z-index: 1;
+  }
+  
+  // コンテナ
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  // セクションタイトル
+  &__title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 500;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(
+        90deg,
+        var(--color-accent-1) 0%,
+        var(--color-accent-2) 100%
+      );
+      border-radius: 2px;
+    }
+    
+    @include tablet {
+      margin-bottom: 3rem;
+    }
+    
+    @include mobile {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  // ストーリーコンテンツ
+  &__content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  // 各ストーリーアイテム
+  &__item {
+    position: relative;
+    margin-bottom: 6rem;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s ease-out;
+    
+    &.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    // 縦スクロール漫画風レイアウト
+    &:nth-child(odd) {
+      .story__item-content {
+        flex-direction: row;
+        text-align: left;
+        
+        @include mobile {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    }
+    
+    &:nth-child(even) {
+      .story__item-content {
+        flex-direction: row-reverse;
+        text-align: right;
+        
+        @include mobile {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    }
+    
+    // 接続線（漫画風）
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: -3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 3rem;
+      background: linear-gradient(
+        180deg,
+        var(--color-accent-1) 0%,
+        transparent 100%
+      );
+      z-index: 1;
+    }
+    
+    @include tablet {
+      margin-bottom: 4rem;
+    }
+    
+    @include mobile {
+      margin-bottom: 3rem;
+    }
+  }
+  
+  // アイテムコンテンツ
+  &__item-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    
+    @include tablet {
+      gap: 2rem;
+    }
+    
+    @include mobile {
+      flex-direction: column !important;
+      gap: 1.5rem;
+      text-align: center !important;
+    }
+  }
+  
+  // テキスト部分
+  &__item-text-content {
+    flex: 1;
+    max-width: 500px;
+  }
+  
+  // アイテムタイトル
+  &__item-title {
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    position: relative;
+    
+    // 番号付き
+    &::before {
+      content: counter(story-counter);
+      counter-increment: story-counter;
+      position: absolute;
+      top: -0.5rem;
+      left: -2rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: var(--color-accent-1);
+      color: white;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      @include mobile {
+        position: static;
+        margin-bottom: 0.5rem;
+      }
+    }
+    
+    @include mobile {
+      &::before {
+        left: 0;
+        transform: none;
+      }
+    }
+  }
+  
+  // アイテムテキスト
+  &__item-text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+  }
+  
+  // アイテム画像
+  &__item-image {
+    flex: 1;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 47, 95, 0.15);
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+    
+    @include mobile {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  }
+  
+  // カウンター初期化
+  counter-reset: story-counter;
+  
+  // レスポンシブ対応
+  @include tablet {
+    padding: 6rem 0;
+  }
+  
+  @include mobile {
+    padding: 4rem 0;
+  }
+}
+
+// パララックス効果
+.story__item-image {
+  will-change: transform;
+  
+  &[data-parallax] {
+    transition: transform 0.1s ease-out;
+  }
+}
+
+// 段階的表示アニメーション
+.story__item {
+  &:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  &:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+}
+
+// 背景アニメーション
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// 装飾要素
+.story::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 160, 166, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+  z-index: 1;
+  
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+// 強化されたアクセシビリティ
+@media (prefers-reduced-motion: reduce) {
+  .story__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    
+    &.in-view {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
+  .story__item-image {
+    transition: none;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// 高解像度デバイス対応
+@media (min-resolution: 2dppx) {
+  .story__item-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+} 

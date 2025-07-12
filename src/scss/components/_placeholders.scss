@@ -1,0 +1,112 @@
+// =============================================================================
+// Placeholders Component - 留学サポート ブランディング LP
+// =============================================================================
+
+// 画像プレースホルダー
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  color: #6b7280;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 2rem;
+  min-height: 200px;
+  
+  &::before {
+    content: attr(data-size) ' - ' attr(data-content);
+  }
+  
+  &--small {
+    min-height: 100px;
+    font-size: 0.875rem;
+  }
+  
+  &--large {
+    min-height: 400px;
+    font-size: 1.25rem;
+  }
+  
+  &--video {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 47, 95, 0.1) 0%,
+      rgba(0, 160, 166, 0.1) 50%,
+      rgba(255, 179, 128, 0.1) 100%
+    );
+    border-color: var(--color-accent-1);
+    color: var(--color-primary);
+    min-height: 300px;
+    
+    &::before {
+      content: '🎬 ' attr(data-size) ' - ' attr(data-content);
+    }
+    
+    @include tablet {
+      min-height: 250px;
+    }
+    
+    @include mobile {
+      min-height: 200px;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// 動画プレースホルダー専用
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-accent-1) 100%
+  );
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  
+  &::before {
+    content: '🎬 1920×1080 - ハワイ朝陽・海';
+  }
+  
+  @include tablet {
+    font-size: 1.25rem;
+  }
+  
+  @include mobile {
+    font-size: 1rem;
+  }
+}
+
+// 動画読み込み失敗時の表示
+video:invalid,
+video[src=""],
+video[src*="404"] {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-accent-1) 100%
+  );
+  
+  &::after {
+    content: '🎬 動画プレースホルダー - ハワイ朝陽・海';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 500;
+    z-index: 10;
+  }
+} 

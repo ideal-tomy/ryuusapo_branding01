@@ -1,0 +1,211 @@
+// =============================================================================
+// Variables - 留学サポート ブランディング LP
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// カラーパレット
+// -----------------------------------------------------------------------------
+
+// ブランドカラー
+$color-primary: #002f5f;      // 濃紺（信頼）
+$color-primary-light: #1a4b7a;
+$color-primary-dark: #001d3d;
+$color-primary-darker: #001429;
+$color-accent1: #00A0A6;      // ティール（自由・海）
+$color-accent1-light: #33b3b8;
+$color-accent1-dark: #008a8f;
+$color-accent1-darker: #006b6f;
+$color-accent2: #FFB380;      // 淡オレンジ（挑戦・朝陽）
+$color-accent2-light: #ffc299;
+$color-accent2-dark: #ff9d5c;
+$color-accent2-darker: #e6804d;
+
+// テキストカラー
+$color-text: #222;            // メインテキスト
+$color-text-light: #666;      // サブテキスト
+$color-text-muted: #999;      // 補助テキスト
+
+// 背景カラー
+$color-bg: #FFFFFF;           // メイン背景
+$color-bg-light: #FAFAFA;     // ライト背景
+$color-bg-section: #F8F9FA;   // セクション背景
+
+// 状態カラー
+$color-success: #28a745;      // 成功
+$color-warning: #ffc107;      // 警告
+$color-error: #dc3545;        // エラー
+$color-info: #17a2b8;         // 情報
+
+// -----------------------------------------------------------------------------
+// タイポグラフィ
+// -----------------------------------------------------------------------------
+
+// フォントファミリー
+$font-serif: 'Noto Serif JP', serif;
+$font-sans: 'Noto Sans JP', sans-serif;
+$font-en: 'Playfair Display', serif;
+
+// フォントサイズ
+$font-size-h1: 48px;         // ヒーローコピー
+$font-size-h2: 36px;         // セクション見出し
+$font-size-h3: 28px;         // 小見出し
+$font-size-h4: 24px;         // サブ見出し
+$font-size-h5: 20px;         // 小さな見出し
+$font-size-h6: 18px;         // 最小見出し
+$font-size-body: 18px;       // 通常本文
+$font-size-small: 16px;      // 小さいテキスト
+$font-size-xs: 14px;         // 最小テキスト
+
+// フォントウェイト
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// ラインハイト
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-loose: 1.8;
+
+// レタースペーシング
+$letter-spacing-tight: -0.025em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.05em;
+
+// -----------------------------------------------------------------------------
+// スペーシング
+// -----------------------------------------------------------------------------
+
+// ベーススペーシング（4pt基準）
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
+$spacing-4xl: 80px;
+$spacing-5xl: 96px;
+
+// セクションスペーシング
+$section-padding-sm: 60px;
+$section-padding-md: 80px;
+$section-padding-lg: 100px;
+$section-padding-xl: 120px;
+
+// -----------------------------------------------------------------------------
+// ブレークポイント
+// -----------------------------------------------------------------------------
+
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1280px;
+$breakpoint-wide: 1440px;
+
+// メディアクエリー
+$mobile: 'screen and (max-width: #{$breakpoint-tablet - 1px})';
+$tablet: 'screen and (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px})';
+$desktop: 'screen and (min-width: #{$breakpoint-desktop})';
+$wide: 'screen and (min-width: #{$breakpoint-wide})';
+
+// -----------------------------------------------------------------------------
+// レイアウト
+// -----------------------------------------------------------------------------
+
+// コンテナ
+$container-max-width: 1280px;
+$container-padding: 1.5rem;
+
+// グリッド
+$grid-columns: 12;
+$grid-gutter: 1.5rem;
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// -----------------------------------------------------------------------------
+// ボーダー・シャドウ
+// -----------------------------------------------------------------------------
+
+// ボーダー半径
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-xl: 24px;
+$border-radius-full: 50%;
+
+// ボーダー幅
+$border-width-thin: 1px;
+$border-width-medium: 2px;
+$border-width-thick: 4px;
+
+// シャドウ
+$shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// -----------------------------------------------------------------------------
+// アニメーション
+// -----------------------------------------------------------------------------
+
+// トランジション
+$transition-fast: 0.15s ease-out;
+$transition-base: 0.2s ease-out;
+$transition-slow: 0.3s ease-out;
+
+// イージング
+$ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+$ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// -----------------------------------------------------------------------------
+// CSS Custom Properties
+// -----------------------------------------------------------------------------
+
+// カラーパレット
+:root {
+  --color-primary: #{$color-primary};
+  --color-primary-light: #{$color-primary-light};
+  --color-primary-dark: #{$color-primary-dark};
+  --color-primary-darker: #{$color-primary-darker};
+  --color-accent-1: #{$color-accent1};
+  --color-accent-1-light: #{$color-accent1-light};
+  --color-accent-1-dark: #{$color-accent1-dark};
+  --color-accent-1-darker: #{$color-accent1-darker};
+  --color-accent-2: #{$color-accent2};
+  --color-accent-2-light: #{$color-accent2-light};
+  --color-accent-2-dark: #{$color-accent2-dark};
+  --color-accent-2-darker: #{$color-accent2-darker};
+  --color-text-primary: #{$color-text};
+  --color-text-secondary: #{$color-text-light};
+  --color-background: #{$color-bg};
+  --color-background-light: #{$color-bg-light};
+  --color-gray-100: #F5F5F5;
+  --color-gray-200: #E5E5E5;
+  --color-gray-300: #D4D4D4;
+  --color-gray-400: #A3A3A3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+}
+
+// -----------------------------------------------------------------------------
+// その他
+// -----------------------------------------------------------------------------
+
+// オパシティ
+$opacity-disabled: 0.6;
+$opacity-muted: 0.8;
+
+// ホバー効果
+$hover-scale: 1.05;
+$hover-lift: -4px; 

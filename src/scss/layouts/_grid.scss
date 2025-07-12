@@ -1,0 +1,398 @@
+// =============================================================================
+// Grid System - 留学サポート ブランディング LP
+// =============================================================================
+
+// 12カラムグリッドシステム（フレックスボックスベース）
+
+// -----------------------------------------------------------------------------
+// グリッドコンテナ
+// -----------------------------------------------------------------------------
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -#{$grid-gutter / 2};
+  margin-right: -#{$grid-gutter / 2};
+  
+  // ネストされたグリッドの場合のマージンリセット
+  .grid {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// グリッドカラム
+// -----------------------------------------------------------------------------
+
+.col {
+  flex: 1;
+  padding-left: $grid-gutter / 2;
+  padding-right: $grid-gutter / 2;
+  
+  // 最小幅を0に設定してflexのshrinkを有効にする
+  min-width: 0;
+}
+
+// -----------------------------------------------------------------------------
+// カラム幅指定（デスクトップ）
+// -----------------------------------------------------------------------------
+
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    flex: 0 0 grid-width($i);
+    max-width: grid-width($i);
+    padding-left: $grid-gutter / 2;
+    padding-right: $grid-gutter / 2;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// タブレット用カラム
+// -----------------------------------------------------------------------------
+
+@include tablet {
+  @for $i from 1 through $grid-columns {
+    .col-tablet-#{$i} {
+      flex: 0 0 grid-width($i);
+      max-width: grid-width($i);
+    }
+  }
+  
+  .col-tablet-auto {
+    flex: 1;
+    max-width: none;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// モバイル用カラム
+// -----------------------------------------------------------------------------
+
+@include mobile {
+  @for $i from 1 through $grid-columns {
+    .col-mobile-#{$i} {
+      flex: 0 0 grid-width($i);
+      max-width: grid-width($i);
+    }
+  }
+  
+  .col-mobile-auto {
+    flex: 1;
+    max-width: none;
+  }
+  
+  // モバイルではデフォルトで全幅
+  .col,
+  [class*="col-"]:not([class*="col-mobile-"]) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// オフセット
+// -----------------------------------------------------------------------------
+
+@for $i from 1 through ($grid-columns - 1) {
+  .offset-#{$i} {
+    margin-left: grid-width($i);
+  }
+}
+
+// タブレット用オフセット
+@include tablet {
+  @for $i from 1 through ($grid-columns - 1) {
+    .offset-tablet-#{$i} {
+      margin-left: grid-width($i);
+    }
+  }
+  
+  .offset-tablet-0 {
+    margin-left: 0;
+  }
+}
+
+// モバイル用オフセット
+@include mobile {
+  @for $i from 1 through ($grid-columns - 1) {
+    .offset-mobile-#{$i} {
+      margin-left: grid-width($i);
+    }
+  }
+  
+  .offset-mobile-0 {
+    margin-left: 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// グリッドの配置
+// -----------------------------------------------------------------------------
+
+// 水平方向の配置
+.grid-start {
+  justify-content: flex-start;
+}
+
+.grid-center {
+  justify-content: center;
+}
+
+.grid-end {
+  justify-content: flex-end;
+}
+
+.grid-around {
+  justify-content: space-around;
+}
+
+.grid-between {
+  justify-content: space-between;
+}
+
+.grid-evenly {
+  justify-content: space-evenly;
+}
+
+// 垂直方向の配置
+.grid-top {
+  align-items: flex-start;
+}
+
+.grid-middle {
+  align-items: center;
+}
+
+.grid-bottom {
+  align-items: flex-end;
+}
+
+.grid-stretch {
+  align-items: stretch;
+}
+
+.grid-baseline {
+  align-items: baseline;
+}
+
+// カラム個別の垂直配置
+.col-top {
+  align-self: flex-start;
+}
+
+.col-middle {
+  align-self: center;
+}
+
+.col-bottom {
+  align-self: flex-end;
+}
+
+.col-stretch {
+  align-self: stretch;
+}
+
+.col-baseline {
+  align-self: baseline;
+}
+
+// -----------------------------------------------------------------------------
+// 順序変更
+// -----------------------------------------------------------------------------
+
+.col-first {
+  order: -1;
+}
+
+.col-last {
+  order: 1;
+}
+
+@for $i from 1 through 5 {
+  .col-order-#{$i} {
+    order: $i;
+  }
+}
+
+// モバイル用順序変更
+@include mobile {
+  .col-mobile-first {
+    order: -1;
+  }
+  
+  .col-mobile-last {
+    order: 1;
+  }
+  
+  @for $i from 1 through 5 {
+    .col-mobile-order-#{$i} {
+      order: $i;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 隙間の調整
+// -----------------------------------------------------------------------------
+
+.grid-gap-none {
+  margin-left: 0;
+  margin-right: 0;
+  
+  .col,
+  [class*="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.grid-gap-small {
+  margin-left: -#{$spacing-sm / 2};
+  margin-right: -#{$spacing-sm / 2};
+  
+  .col,
+  [class*="col-"] {
+    padding-left: $spacing-sm / 2;
+    padding-right: $spacing-sm / 2;
+  }
+}
+
+.grid-gap-large {
+  margin-left: -#{$spacing-2xl / 2};
+  margin-right: -#{$spacing-2xl / 2};
+  
+  .col,
+  [class*="col-"] {
+    padding-left: $spacing-2xl / 2;
+    padding-right: $spacing-2xl / 2;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 便利なヘルパークラス
+// -----------------------------------------------------------------------------
+
+// 自動幅
+.col-auto {
+  flex: 0 0 auto;
+  max-width: none;
+}
+
+// 内容に合わせて伸縮
+.col-fill {
+  flex: 1 1 auto;
+}
+
+// 等幅カラム
+.col-equal {
+  flex: 1;
+}
+
+// 非表示
+.col-hidden {
+  display: none;
+}
+
+// レスポンシブ表示制御
+@include mobile {
+  .col-mobile-hidden {
+    display: none;
+  }
+  
+  .col-mobile-show {
+    display: block;
+  }
+}
+
+@include tablet {
+  .col-tablet-hidden {
+    display: none;
+  }
+  
+  .col-tablet-show {
+    display: block;
+  }
+}
+
+@include desktop {
+  .col-desktop-hidden {
+    display: none;
+  }
+  
+  .col-desktop-show {
+    display: block;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// セクション用特殊レイアウト
+// -----------------------------------------------------------------------------
+
+// 2カラム（サイドバー + メイン）
+.grid-sidebar {
+  @include desktop {
+    .col-sidebar {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+    
+    .col-main {
+      flex: 0 0 75%;
+      max-width: 75%;
+    }
+  }
+  
+  @include tablet {
+    .col-sidebar,
+    .col-main {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+// 3カラム等幅
+.grid-thirds {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    
+    .col-third:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+  }
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+// 4カラム等幅
+.grid-quarters {
+  @include desktop {
+    .col-quarter {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+  }
+  
+  @include tablet {
+    .col-quarter {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+  
+  @include mobile {
+    .col-quarter {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+} 

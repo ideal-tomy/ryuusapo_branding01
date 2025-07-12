@@ -1,0 +1,370 @@
+// =============================================================================
+// Services Layout - 留学サポート ブランディング LP
+// =============================================================================
+
+// サービス全体像セクション
+.services {
+  padding: 8rem 0;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #fafafa 30%,
+    rgba(0, 160, 166, 0.02) 70%,
+    rgba(255, 179, 128, 0.02) 100%
+  );
+  position: relative;
+  overflow: hidden;
+  
+  // 背景装飾パターン
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(0, 160, 166, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(255, 179, 128, 0.08) 0%, transparent 50%);
+    z-index: 1;
+  }
+  
+  // コンテナ
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  // セクションタイトル
+  &__title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 500;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+    
+    &.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    // アンダーライン装飾
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(
+        90deg,
+        var(--color-accent-1) 0%,
+        var(--color-accent-2) 100%
+      );
+      border-radius: 2px;
+      opacity: 0;
+      animation: slideIn 0.8s ease-out 0.5s forwards;
+    }
+    
+    @include tablet {
+      margin-bottom: 3rem;
+    }
+    
+    @include mobile {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  // グリッド調整 - 修正: PC Grid 3 カラム / gap 32px
+  .grid {
+    // 削除: 重複するgrid設定（.grid-thirdsクラスで統一）
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    // gap: 32px;
+    
+    // @include tablet {
+    //   grid-template-columns: repeat(2, 1fr);
+    //   gap: 24px;
+    // }
+    
+    // @include mobile {
+    //   grid-template-columns: 1fr;
+    //   gap: 20px;
+    // }
+  }
+  
+  // サービスカード - 修正: カード内の配置を最適化
+  &__card {
+    background: white;
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 
+      0 4px 6px rgba(0, 47, 95, 0.03),
+      0 12px 24px rgba(0, 47, 95, 0.08);
+    border: 1px solid rgba(0, 47, 95, 0.06);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; // 修正: 上寄せ
+    min-height: 350px; // 修正: 最小高さを350pxに調整
+    
+    &:nth-child(1) {
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    &:nth-child(2) {
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+    
+    &:nth-child(3) {
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+    
+    // ホバー効果
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 8px 16px rgba(0, 47, 95, 0.08),
+        0 24px 48px rgba(0, 47, 95, 0.15);
+      
+      .services__icon {
+        transform: scale(1.1) rotate(5deg);
+      }
+      
+      .services__card-image {
+        transform: scale(1.05);
+      }
+    }
+    
+    // アクティブ状態
+    &:active {
+      transform: translateY(-4px);
+    }
+    
+    // フォーカス状態
+    &:focus-within {
+      outline: 2px solid var(--color-accent-1);
+      outline-offset: 2px;
+    }
+    
+    // 背景装飾
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 160, 166, 0.02) 0%,
+        rgba(255, 179, 128, 0.02) 100%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+    
+    &:hover::before {
+      opacity: 1;
+    }
+    
+    // すべての子要素を前面に
+    > * {
+      position: relative;
+      z-index: 2;
+    }
+    
+    @include tablet {
+      padding: 2rem;
+      min-height: 320px; // タブレットでは320px
+    }
+    
+    @include mobile {
+      padding: 1.5rem;
+      min-height: 280px; // モバイルでは280px
+    }
+  }
+  
+  // サービスアイコン
+  &__icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 2px 4px rgba(0, 47, 95, 0.1));
+    
+    @include tablet {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    @include mobile {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  // カードタイトル
+  &__card-title {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    
+    @include mobile {
+      margin-bottom: 0.75rem;
+    }
+  }
+  
+  // カードテキスト
+  &__card-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    // 修正: flex-growを削除し、自然な高さに
+    
+    @include mobile {
+      margin-bottom: 1.25rem;
+    }
+  }
+  
+  // カード画像
+  &__card-image {
+    width: 100%;
+    height: 140px; // 修正: 高さを140pxに縮小
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 47, 95, 0.1);
+    transition: transform 0.3s ease;
+    margin-top: auto; // 修正: 画像を下部に配置
+    
+    @include tablet {
+      height: 120px; // 修正: タブレットサイズを120pxに
+    }
+    
+    @include mobile {
+      height: 100px; // 修正: モバイルサイズを100pxに
+    }
+  }
+  
+  // CTA エリア
+  &__cta {
+    text-align: center;
+    margin-top: 4rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+    
+    &.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @include tablet {
+      margin-top: 3rem;
+    }
+    
+    @include mobile {
+      margin-top: 2rem;
+    }
+  }
+  
+  // レスポンシブ対応
+  @include tablet {
+    padding: 6rem 0;
+  }
+  
+  @include mobile {
+    padding: 4rem 0;
+  }
+  
+  // カード別の装飾
+  &__card:nth-child(1)::before {
+    background: linear-gradient(135deg, rgba(255, 179, 128, 0.03) 0%, rgba(255, 179, 128, 0.01) 100%);
+  }
+  
+  &__card:nth-child(2)::before {
+    background: linear-gradient(135deg, rgba(0, 160, 166, 0.03) 0%, rgba(0, 160, 166, 0.01) 100%);
+  }
+  
+  &__card:nth-child(3)::before {
+    background: linear-gradient(135deg, rgba(0, 47, 95, 0.03) 0%, rgba(0, 47, 95, 0.01) 100%);
+  }
+}
+
+// アニメーション定義
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 動きを削減する設定
+@media (prefers-reduced-motion: reduce) {
+  .services {
+    &__card {
+      animation: none;
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+    }
+    
+    &__icon {
+      transition: none;
+    }
+    
+    &__card-image {
+      transition: none;
+    }
+    
+    &__title,
+    &__cta {
+      animation: none;
+      transition: none;
+    }
+  }
+}
+
+// 高コントラストモード対応
+@media (prefers-contrast: high) {
+  .services {
+    &__card {
+      border: 2px solid var(--color-primary);
+      
+      &:hover {
+        border-color: var(--color-accent-1);
+      }
+    }
+  }
+} 

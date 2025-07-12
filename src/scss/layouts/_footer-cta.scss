@@ -1,0 +1,197 @@
+/* ====================================
+   11. フッタービジョン & グローバルCTAセクション
+   ==================================== */
+
+.footer-cta {
+    padding: 8rem 0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    position: relative;
+    overflow: hidden;
+    
+    // 背景装飾
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 60px 60px;
+        animation: backgroundMove 40s linear infinite;
+    }
+    
+    // 光の効果
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(ellipse at center, rgba(0, 160, 166, 0.3) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+    
+    &__title {
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+        color: #FFFFFF; // 修正: 見出しカラーを#FFFFFFに統一
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        line-height: 1.2;
+        font-weight: 700;
+        
+        @media (max-width: 768px) {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+    
+    &__text {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 3rem;
+        line-height: 1.6;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        
+        @media (max-width: 768px) {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+    }
+    
+    &__buttons {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+    
+    // ボタンのスタイル強化
+    .btn {
+        min-width: 220px;
+        padding: 1.2rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        &:hover::before {
+            left: 100%;
+        }
+        
+        &.btn-primary {
+            background: var(--color-accent-1);
+            color: var(--color-white);
+            border: 2px solid var(--color-accent-1);
+            box-shadow: 0 0 24px rgba(0, 160, 166, 0.6); // 修正: ボタン影を外側に変更
+            
+            &:hover {
+                background: var(--color-accent-2);
+                border-color: var(--color-accent-2);
+                transform: translateY(-3px);
+                box-shadow: 0 0 24px rgba(0, 160, 166, 0.6); // 修正: ホバー時も同じ影
+            }
+        }
+        
+        &.btn-secondary {
+            background: transparent;
+            color: var(--color-white);
+            border: 2px solid var(--color-white);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+            
+            &:hover {
+                background: var(--color-white);
+                color: var(--color-primary);
+                transform: translateY(-3px);
+                box-shadow: 0 12px 35px rgba(255, 255, 255, 0.4);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            min-width: 200px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+    }
+    
+    // アニメーション効果
+    &__title,
+    &__text,
+    &__buttons {
+        transform: translateY(30px);
+        opacity: 0;
+        transition: all 0.8s ease;
+        
+        &.animate-in {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    &__title.animate-in { animation-delay: 0.2s; }
+    &__text.animate-in { animation-delay: 0.4s; }
+    &__buttons.animate-in { animation-delay: 0.6s; }
+    
+    // パルス効果 - 修正: 外側グロー効果に調整
+    &__buttons .btn-primary {
+        animation: ctaPulse 3s ease-in-out infinite;
+    }
+}
+
+// アニメーション定義
+@keyframes backgroundMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
+}
+
+@keyframes ctaPulse {
+    0%, 100% { 
+        box-shadow: 0 0 24px rgba(0, 160, 166, 0.6);
+    }
+    50% { 
+        box-shadow: 0 0 24px rgba(0, 160, 166, 0.8); // 修正: より自然なグロー効果
+    }
+}
+
+// Intersection Observer用のクラス
+.footer-cta-observer {
+    .footer-cta__title,
+    .footer-cta__text,
+    .footer-cta__buttons {
+        transition: all 0.8s ease;
+        
+        &.animate-in {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+} 

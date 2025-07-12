@@ -1,0 +1,242 @@
+// =============================================================================
+// Hero Layout - 留学サポート ブランディング LP
+// =============================================================================
+
+// ヒーローセクション
+.hero {
+  padding: 6rem 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(250, 250, 250, 1) 100%
+  );
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh; // 修正: 背景画像サイズを80vhに設定
+  
+  // 背景装飾
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 160, 166, 0.05) 0%,
+      rgba(255, 179, 128, 0.05) 100%
+    );
+    border-radius: 50%;
+    transform: rotate(-10deg);
+    z-index: 1;
+  }
+  
+  // コンテナ
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  // コンテンツ - 修正: 中央揃え配置
+  &__content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh; // 修正: コンテンツの高さ調整
+    
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+  
+  // メインタイトル - 修正: 中央揃え（transform-translate -50%）
+  &__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    width: max-content;
+    max-width: 90vw;
+    
+    @include tablet {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-bottom: 1.25rem;
+    }
+    
+    @include mobile {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      margin-bottom: 1rem;
+    }
+  }
+  
+  // サブタイトル
+  &__subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    color: var(--color-text-secondary);
+    margin-bottom: 3rem;
+    font-weight: 400;
+    line-height: 1.6;
+    
+    @include tablet {
+      margin-bottom: 2.5rem;
+    }
+    
+    @include mobile {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  // 代表写真エリア
+  &__image {
+    margin-bottom: 3rem;
+    
+    @include tablet {
+      margin-bottom: 2.5rem;
+    }
+    
+    @include mobile {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  // 代表写真
+  &__representative {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid white;
+    box-shadow: 0 8px 32px rgba(0, 47, 95, 0.15);
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+    
+    @include tablet {
+      width: 180px;
+      height: 180px;
+    }
+    
+    @include mobile {
+      width: 160px;
+      height: 160px;
+      border-width: 4px;
+    }
+  }
+  
+  // CTA エリア - 修正: タグライン直下に水平並び（gap 24px）
+  &__cta {
+    display: flex;
+    gap: 24px; // 修正: gap を24pxに変更
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem; // 修正: タグライン直下に配置
+    
+    @include mobile {
+      gap: 16px; // モバイルでは少し狭く
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      min-width: 180px;
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+      font-weight: 500;
+      
+      @include mobile {
+        min-width: 200px;
+        padding: 0.875rem 1.5rem;
+      }
+    }
+  }
+  
+  // レスポンシブ対応
+  @include tablet {
+    padding: 5rem 0;
+    min-height: 70vh;
+  }
+  
+  @include mobile {
+    padding: 4rem 0;
+    min-height: 60vh;
+  }
+}
+
+// プレースホルダー画像（代表写真未設定時）
+.hero__representative {
+  // 404エラー時のプレースホルダー
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      var(--color-accent-1) 0%,
+      var(--color-accent-2) 100%
+    );
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    z-index: -1;
+  }
+}
+
+// 画像読み込み失敗時のスタイル
+img[src*="representative-photo.jpg"]:not([src]) {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-1) 0%,
+    var(--color-accent-2) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  
+  &::before {
+    content: "300×300\A代表者写真";
+    white-space: pre;
+    text-align: center;
+    line-height: 1.4;
+  }
+}
+
+// パルス効果
+.hero .btn:first-child {
+  animation: pulse 2s ease-in-out infinite;
+  
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+} 

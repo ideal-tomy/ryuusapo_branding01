@@ -1,0 +1,161 @@
+// =============================================================================
+// Reset - 留学サポート ブランディング LP
+// =============================================================================
+
+// モダンなCSSリセット（Josh Comeau's CSS Reset + 独自改良）
+
+/*
+  1. より直感的なボックスサイジング
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  2. デフォルトマージンの削除
+*/
+* {
+  margin: 0;
+}
+
+/*
+  3. 行の高さの改善
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  4. メディア要素の改善
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  5. フォーム要素の継承
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/*
+  6. 長いワードの折り返し
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+  7. ルート要素の改善
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/*
+  8. リストのスタイルリセット
+*/
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+/*
+  9. リンクのスタイルリセット
+*/
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*
+  10. ボタンのスタイルリセット
+*/
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/*
+  11. テーブルのスタイルリセット
+*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+  12. フォーカスの改善
+*/
+:focus {
+  outline: 2px solid $color-accent1;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/*
+  13. 動きの軽減設定
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+  14. スクロールバーのスタイリング
+*/
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-bg-light;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-accent1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: shade($color-accent1, 20%);
+}
+
+/*
+  15. 選択時のスタイリング
+*/
+::selection {
+  background: alpha($color-accent1, 0.3);
+  color: $color-text;
+} 

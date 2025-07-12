@@ -1,0 +1,269 @@
+// =============================================================================
+// Buttons Component - 留学サポート ブランディング LP
+// =============================================================================
+
+// ボタンコンポーネント
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 2px solid transparent;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  // フォーカス状態
+  &:focus {
+    outline: 2px solid var(--color-accent-1);
+    outline-offset: 2px;
+  }
+  
+  // ホバー効果
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  // アクティブ状態
+  &:active {
+    transform: translateY(0);
+  }
+  
+  // 無効状態
+  &:disabled,
+  &.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  // サイズバリエーション
+  &--small {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  &--large {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+  
+  // レスポンシブ対応
+  @include mobile {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+// プライマリボタン
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  
+  &:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    color: white;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(0, 47, 95, 0.25);
+  }
+  
+  &:active {
+    background: var(--color-primary-darker);
+    border-color: var(--color-primary-darker);
+  }
+}
+
+// セカンダリボタン
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  
+  &:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(0, 47, 95, 0.25);
+  }
+  
+  &:active {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    color: white;
+  }
+}
+
+// アクセントボタン
+.btn-accent {
+  background: var(--color-accent-1);
+  color: white;
+  border-color: var(--color-accent-1);
+  
+  &:hover {
+    background: var(--color-accent-1-dark);
+    border-color: var(--color-accent-1-dark);
+    color: white;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(0, 160, 166, 0.25);
+  }
+  
+  &:active {
+    background: var(--color-accent-1-darker);
+    border-color: var(--color-accent-1-darker);
+  }
+}
+
+// ライトボタン
+.btn-light {
+  background: white;
+  color: var(--color-primary);
+  border-color: white;
+  
+  &:hover {
+    background: var(--color-gray-100);
+    border-color: var(--color-gray-100);
+    color: var(--color-primary);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+  }
+  
+  &:active {
+    background: var(--color-gray-200);
+    border-color: var(--color-gray-200);
+  }
+}
+
+// ボタングループ
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+// アイコン付きボタン
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    
+    &--left {
+      order: -1;
+    }
+    
+    &--right {
+      order: 1;
+    }
+  }
+}
+
+// 特別なCTAボタン（強調用）
+.btn-cta {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      display: none;
+    }
+  }
+}
+
+// 読み込み中ボタン
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1rem;
+    height: 1rem;
+    margin: -0.5rem 0 0 -0.5rem;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  .btn-text {
+    opacity: 0;
+  }
+}
+
+// スピンアニメーション
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// アクセシビリティ対応
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+  
+  .btn-loading::after {
+    animation: none;
+  }
+} 

@@ -1,0 +1,186 @@
+// =============================================================================
+// Typography - 留学サポート ブランディング LP
+// =============================================================================
+
+// フォントの読み込み
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;500;700&display=swap');
+
+// ベースタイポグラフィ設定
+html {
+  font-size: 16px; // 1rem = 16px
+  
+  @include mobile {
+    font-size: 14px; // モバイルでは少し小さく
+  }
+}
+
+body {
+  @include body-base;
+  font-size: $font-size-body;
+  background-color: $color-bg;
+  color: $color-text;
+}
+
+// 見出しスタイル
+h1, .h1 {
+  @include heading-base;
+  @include font-size($font-size-h1, 36px);
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-lg;
+}
+
+h2, .h2 {
+  @include heading-base;
+  @include font-size($font-size-h2, 28px);
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-md;
+}
+
+h3, .h3 {
+  @include heading-base;
+  @include font-size($font-size-h3, 24px);
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-md;
+}
+
+h4, .h4 {
+  @include heading-base;
+  @include font-size($font-size-h4, 20px);
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-sm;
+}
+
+h5, .h5 {
+  @include heading-base;
+  @include font-size($font-size-h5, 18px);
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-sm;
+}
+
+h6, .h6 {
+  @include heading-base;
+  @include font-size($font-size-h6, 16px);
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-sm;
+}
+
+// 本文スタイル
+p {
+  @include body-base;
+  margin-bottom: $spacing-md;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// リンクスタイル
+a {
+  color: $color-accent1;
+  text-decoration: none;
+  transition: color $transition-base;
+  
+  &:hover {
+    color: shade($color-accent1, 20%);
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    outline: 2px solid $color-accent1;
+    outline-offset: 2px;
+  }
+}
+
+// リストスタイル
+ul, ol {
+  margin-bottom: $spacing-md;
+  padding-left: $spacing-xl;
+  
+  li {
+    @include body-base;
+    margin-bottom: $spacing-xs;
+  }
+}
+
+// 強調スタイル
+strong, b {
+  font-weight: $font-weight-bold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+// コードスタイル
+code {
+  font-family: 'Courier New', monospace;
+  background-color: $color-bg-light;
+  padding: 2px 4px;
+  border-radius: $border-radius-sm;
+  font-size: 0.9em;
+}
+
+// 引用スタイル
+blockquote {
+  border-left: 4px solid $color-accent1;
+  padding-left: $spacing-lg;
+  margin: $spacing-xl 0;
+  font-style: italic;
+  color: $color-text-light;
+}
+
+// 特殊なテキストスタイル
+.text-large {
+  font-size: $font-size-h4;
+}
+
+.text-small {
+  font-size: $font-size-small;
+}
+
+.text-xs {
+  font-size: $font-size-xs;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-primary {
+  color: $color-primary;
+}
+
+.text-accent {
+  color: $color-accent1;
+}
+
+.text-muted {
+  color: $color-text-light;
+}
+
+.text-light {
+  color: $color-text-muted;
+}
+
+// 英字フォント
+.font-en {
+  font-family: $font-en;
+}
+
+// 日本語フォント（明朝）
+.font-serif {
+  font-family: $font-serif;
+}
+
+// 日本語フォント（ゴシック）
+.font-sans {
+  font-family: $font-sans;
+} 

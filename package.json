@@ -1,0 +1,57 @@
+{
+  "name": "study-abroad-branding-lp",
+  "version": "1.0.0",
+  "description": "留学サポートブランディングLP - 10代の可能性を花開かせる留学サポートサービス",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:css && npm run build:js && npm run copy:assets",
+    "build:css": "sass src/scss/main.scss dist/css/main.css --style compressed && postcss dist/css/main.css --use autoprefixer -r",
+    "build:js": "terser src/js/main.js -o dist/js/main.js --compress --mangle",
+    "build:dev": "npm run build:css:dev && npm run build:js:dev && npm run copy:assets",
+    "build:css:dev": "sass src/scss/main.scss dist/css/main.css --style expanded",
+    "build:js:dev": "if not exist dist\\js mkdir dist\\js && copy src\\js\\main.js dist\\js\\main.js",
+    "watch": "npm run watch:css & npm run watch:js",
+    "watch:css": "sass --watch src/scss/main.scss dist/css/main.css --style expanded",
+    "watch:js": "chokidar 'src/js/**/*.js' -c 'npm run build:js:dev'",
+    "serve": "live-server dist --port=3000 --open=/",
+    "dev": "npm run build:dev && npm run watch & npm run serve",
+    "clean": "rm -rf dist",
+    "copy:assets": "xcopy src\\images dist\\images /E /I /Y && copy src\\index.html dist\\index.html",
+    "lint": "eslint src/js/**/*.js",
+    "lint:fix": "eslint src/js/**/*.js --fix",
+    "format": "prettier --write src/**/*.{html,css,scss,js}",
+    "validate": "npm run lint && npm run format"
+  },
+  "keywords": [
+    "留学サポート",
+    "ブランディング",
+    "ランディングページ",
+    "高校留学",
+    "教育",
+    "海外留学"
+  ],
+  "author": "留学サポートチーム",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "autoprefixer": "^10.4.16",
+    "chokidar-cli": "^3.0.0",
+    "eslint": "^8.57.0",
+    "live-server": "^1.2.2",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "prettier": "^3.1.1",
+    "sass": "^1.69.5",
+    "terser": "^5.26.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.2",
+    "@glidejs/glide": "^3.6.0",
+    "plyr": "^3.7.8"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ]
+} 

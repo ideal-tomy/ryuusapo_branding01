@@ -1,0 +1,115 @@
+// =============================================================================
+// Functions - 留学サポート ブランディング LP
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// 単位変換
+// -----------------------------------------------------------------------------
+
+// px to rem 変換
+@function rem($px, $base-font-size: 16px) {
+  @return ($px / $base-font-size) * 1rem;
+}
+
+// px to em 変換
+@function em($px, $base-font-size: 16px) {
+  @return ($px / $base-font-size) * 1em;
+}
+
+// -----------------------------------------------------------------------------
+// カラー関数
+// -----------------------------------------------------------------------------
+
+// カラーの明度を調整
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// 透明度を調整
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}
+
+// -----------------------------------------------------------------------------
+// 計算関数
+// -----------------------------------------------------------------------------
+
+// 黄金比計算
+@function golden-ratio($value, $increment: 0) {
+  @return $value * pow(1.618, $increment);
+}
+
+// グリッドの幅を計算
+@function grid-width($columns, $total-columns: $grid-columns) {
+  @return percentage($columns / $total-columns);
+}
+
+// Z-indexの管理
+@function z-index($layer) {
+  $z-indexes: (
+    'dropdown': 1000,
+    'sticky': 1020,
+    'fixed': 1030,
+    'modal-backdrop': 1040,
+    'modal': 1050,
+    'popover': 1060,
+    'tooltip': 1070
+  );
+  
+  @if map-has-key($z-indexes, $layer) {
+    @return map-get($z-indexes, $layer);
+  }
+  
+  @warn 'Unknown z-index `#{$layer}` in $z-indexes.';
+  @return null;
+}
+
+// -----------------------------------------------------------------------------
+// 文字列関数
+// -----------------------------------------------------------------------------
+
+// 文字列を置換
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  
+  @return $string;
+}
+
+// -----------------------------------------------------------------------------
+// バリデーション関数
+// -----------------------------------------------------------------------------
+
+// 値が範囲内かチェック
+@function validate-range($value, $min, $max) {
+  @if $value < $min {
+    @return $min;
+  } @else if $value > $max {
+    @return $max;
+  }
+  @return $value;
+}
+
+// unitが指定されているかチェック
+@function has-unit($value) {
+  @return unitless($value) == false;
+}
+
+// -----------------------------------------------------------------------------
+// レスポンシブ関数
+// -----------------------------------------------------------------------------
+
+// 流動的なタイポグラフィ
+@function fluid-font-size($min-size, $max-size, $min-width: $breakpoint-mobile, $max-width: $breakpoint-desktop) {
+  $slope: ($max-size - $min-size) / ($max-width - $min-width);
+  $y-intercept: $min-size - ($slope * $min-width);
+  
+  @return clamp(#{$min-size}, #{$y-intercept} + #{$slope * 100vw}, #{$max-size});
+} 

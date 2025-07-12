@@ -1,0 +1,492 @@
+// ========================================
+// 社会的インパクトセクション
+// ========================================
+
+.impact {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 160, 166, 0.05) 0%, transparent 70%);
+    animation: impactBackgroundFloat 20s ease-in-out infinite;
+  }
+  
+  @include tablet {
+    padding: 80px 0;
+  }
+  
+  @include mobile {
+    padding: 60px 0;
+  }
+}
+
+@keyframes impactBackgroundFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-10px, -10px) rotate(1deg); }
+}
+
+.impact__header {
+  text-align: center;
+  margin-bottom: 80px;
+  
+  @include tablet {
+    margin-bottom: 60px;
+  }
+  
+  @include mobile {
+    margin-bottom: 40px;
+  }
+}
+
+.impact__title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color) 0%, var(--accent-color-2) 100%);
+    border-radius: 2px;
+  }
+  
+  @include tablet {
+    font-size: 2.8rem;
+  }
+  
+  @include mobile {
+    font-size: 2.2rem;
+  }
+}
+
+.impact__subtitle {
+  font-size: 1.3rem;
+  color: var(--text-color-secondary);
+  font-weight: 500;
+  
+  @include mobile {
+    font-size: 1.1rem;
+  }
+}
+
+.impact__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 80px;
+  
+  @include tablet {
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+}
+
+.impact__stat-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(0, 160, 166, 0.03), transparent);
+    transform: rotate(45deg);
+    transition: transform 0.6s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    
+    &::before {
+      transform: rotate(45deg) translate(50%, 50%);
+    }
+  }
+  
+  @include tablet {
+    padding: 30px 20px;
+  }
+  
+  @include mobile {
+    padding: 24px 16px;
+  }
+}
+
+.impact__stat-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  
+  @include mobile {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+  }
+}
+
+.impact__stat-number {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  line-height: 1;
+  margin-bottom: 8px;
+  display: inline-block;
+  
+  @include mobile {
+    font-size: 3rem;
+  }
+}
+
+.impact__stat-unit {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-left: 8px;
+  
+  @include mobile {
+    font-size: 1.2rem;
+  }
+}
+
+.impact__stat-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 12px;
+  line-height: 1.4;
+  
+  @include mobile {
+    font-size: 1rem;
+  }
+}
+
+.impact__stat-sublabel {
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+  font-weight: 400;
+}
+
+.impact__stat-description {
+  font-size: 0.95rem;
+  color: var(--text-color-secondary);
+  line-height: 1.6;
+  margin-top: 16px;
+  
+  @include mobile {
+    font-size: 0.9rem;
+  }
+}
+
+.impact__chart {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 80px;
+  
+  @include tablet {
+    padding: 30px;
+    margin-bottom: 60px;
+  }
+  
+  @include mobile {
+    padding: 24px;
+    margin-bottom: 40px;
+  }
+}
+
+.impact__chart-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 40px;
+  
+  @include mobile {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+}
+
+.impact__chart-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.impact__chart-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  position: relative;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 30px;
+  }
+}
+
+.impact__chart-bar-label {
+  flex: 0 0 140px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  
+  @include mobile {
+    flex: none;
+    margin-bottom: 8px;
+  }
+}
+
+.impact__chart-bar-fill {
+  flex: 1;
+  height: 40px;
+  background: linear-gradient(90deg, var(--accent-color) 0%, var(--accent-color-2) 100%);
+  border-radius: 20px;
+  position: relative;
+  margin: 0 20px;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    animation: chartBarShine 3s ease-in-out infinite;
+  }
+  
+  @include mobile {
+    width: 100%;
+    margin: 0;
+    height: 32px;
+  }
+}
+
+@keyframes chartBarShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.impact__chart-bar-value {
+  flex: 0 0 60px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: right;
+  
+  @include mobile {
+    flex: none;
+    text-align: left;
+    margin-top: 8px;
+  }
+}
+
+.impact__chart-caption {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+  font-style: italic;
+  
+  @include mobile {
+    margin-top: 20px;
+  }
+}
+
+.impact__message {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #003a75 100%);
+  border-radius: 30px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: impactMessageFloat 15s ease-in-out infinite reverse;
+  }
+  
+  @include tablet {
+    padding: 40px 30px;
+  }
+  
+  @include mobile {
+    padding: 30px 24px;
+    margin: 0 16px;
+  }
+}
+
+@keyframes impactMessageFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-20px, -20px) rotate(-1deg); }
+}
+
+.impact__message-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+  
+  @include mobile {
+    font-size: 1.8rem;
+  }
+}
+
+.impact__message-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  position: relative;
+  z-index: 1;
+  
+  @include mobile {
+    font-size: 1.1rem;
+  }
+}
+
+// アニメーション用のクラス
+.impact__stat-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.impact__chart {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.impact__message {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  
+  &.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// カウントアップアニメーション
+.impact__stat-number {
+  &.counting {
+    color: var(--accent-color);
+    animation: countPulse 0.1s ease-in-out;
+  }
+}
+
+@keyframes countPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+// チャートバーアニメーション
+.impact__chart-bar-fill {
+  width: 0%;
+  transition: width 2s ease-out;
+  
+  &.animate-bar {
+    width: var(--bar-width);
+  }
+}
+
+// レスポンシブ対応
+@include mobile {
+  .impact__stats {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .impact__stat-card {
+    padding: 24px 20px;
+  }
+  
+  .impact__chart {
+    padding: 20px;
+  }
+  
+  .impact__message {
+    border-radius: 20px;
+    margin: 0 0;
+  }
+}
+
+// アクセシビリティ対応
+@media (prefers-reduced-motion: reduce) {
+  .impact__stat-card,
+  .impact__chart,
+  .impact__message {
+    transition: none;
+  }
+  
+  .impact__chart-bar-fill {
+    transition: none;
+    
+    &::after {
+      animation: none;
+    }
+  }
+  
+  .impact::before,
+  .impact__message::before {
+    animation: none;
+  }
+} 

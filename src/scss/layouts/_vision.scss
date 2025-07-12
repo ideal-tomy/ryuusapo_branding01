@@ -1,0 +1,311 @@
+// =============================================================================
+// Vision Layout - 留学サポート ブランディング LP
+// =============================================================================
+
+// ビジョン&ミッションセクション
+.vision {
+  padding: 8rem 0;
+  background: linear-gradient(
+    135deg,
+    #fafafa 0%,
+    #ffffff 30%,
+    rgba(0, 160, 166, 0.03) 70%,
+    rgba(255, 179, 128, 0.03) 100%
+  );
+  position: relative;
+  overflow: hidden;
+  
+  // 背景装飾パターン
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(0, 160, 166, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 179, 128, 0.1) 0%, transparent 50%);
+    z-index: 1;
+  }
+  
+  // コンテナ
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  // セクションタイトル
+  &__title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 500;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+    
+    &.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    // アンダーライン装飾
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(
+        90deg,
+        var(--color-accent-1) 0%,
+        var(--color-accent-2) 100%
+      );
+      border-radius: 2px;
+      opacity: 0;
+      animation: slideIn 0.8s ease-out 0.5s forwards;
+    }
+    
+    @include tablet {
+      margin-bottom: 3rem;
+    }
+    
+    @include mobile {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  // グリッドコンテナ（2カラム）
+  .grid {
+    gap: 4rem;
+    
+    @include tablet {
+      gap: 3rem;
+    }
+    
+    @include mobile {
+      gap: 2rem;
+    }
+  }
+  
+  // 各アイテム
+  &__item {
+    position: relative;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 47, 95, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+    
+    &.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    // ホバー効果
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 47, 95, 0.15);
+    }
+    
+    // アイテム装飾
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(
+        90deg,
+        var(--color-accent-1) 0%,
+        var(--color-accent-2) 100%
+      );
+      border-radius: 24px 24px 0 0;
+    }
+    
+    // ビジョンアイテム（左側）
+    &:first-child {
+      &::after {
+        content: '🌟';
+        position: absolute;
+        top: -1rem;
+        right: 2rem;
+        font-size: 2rem;
+        opacity: 0.7;
+      }
+    }
+    
+    // ミッションアイテム（右側）
+    &:last-child {
+      &::after {
+        content: '🚀';
+        position: absolute;
+        top: -1rem;
+        right: 2rem;
+        font-size: 2rem;
+        opacity: 0.7;
+      }
+    }
+    
+    @include tablet {
+      padding: 2.5rem;
+    }
+    
+    @include mobile {
+      padding: 2rem;
+    }
+  }
+  
+  // アイテムタイトル
+  &__item-title {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    
+    // ワード毎のフェード準備
+    .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease-out;
+      
+      &.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  // アイテムテキスト
+  &__item-text {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    text-align: center;
+    
+    // ワード毎のフェード準備
+    .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.5s ease-out;
+      
+      &.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  // レスポンシブ対応
+  @include tablet {
+    padding: 6rem 0;
+  }
+  
+  @include mobile {
+    padding: 4rem 0;
+  }
+}
+
+// アニメーション効果
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    width: 0;
+  }
+  to {
+    opacity: 1;
+    width: 100px;
+  }
+}
+
+// ビジョンアイテムの遅延アニメーション
+.vision__item:first-child {
+  transition-delay: 0.2s;
+}
+
+.vision__item:last-child {
+  transition-delay: 0.4s;
+}
+
+// 背景の動的効果
+.vision::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 160, 166, 0.05) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+  z-index: 1;
+  
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+// アクセシビリティ対応
+@media (prefers-reduced-motion: reduce) {
+  .vision {
+    &__title,
+    &__item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      
+      &.in-view {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    
+    &__item:hover {
+      transform: none;
+    }
+    
+    .word {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      
+      &.animate {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+  
+  @keyframes float {
+    from, to {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+} 

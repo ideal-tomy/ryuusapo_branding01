@@ -1,0 +1,154 @@
+// =============================================================================
+// Preheader Layout - 留学サポート ブランディング LP
+// =============================================================================
+
+// プリヒーローセクション
+.preheader {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  
+  // 背景動画
+  &__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  
+  // オーバーレイ効果
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 47, 95, 0.5) 0%,
+      rgba(0, 160, 166, 0.3) 50%,
+      rgba(255, 179, 128, 0.2) 100%
+    );
+    z-index: 2;
+  }
+  
+  // コンテンツ
+  &__content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    animation: fadeInUp 1s ease-out;
+    
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+  
+  // タグライン
+  &__tagline {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 500;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05em;
+    margin: 0;
+    
+    @include tablet {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    
+    @include mobile {
+      font-size: clamp(1.2rem, 6vw, 2rem);
+      line-height: 1.3;
+    }
+  }
+  
+  // レスポンシブ対応
+  @include mobile {
+    height: 70vh;
+    min-height: 500px;
+  }
+}
+
+// フェードインアニメーション
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 画像プレースホルダー（動画未実装時）
+.preheader__video video {
+  &::before {
+    content: '1920×1080 – ハワイ朝陽・海';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #e5e7eb;
+    color: #6b7280;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    z-index: 10;
+    display: none; // 実際の動画があるときは非表示
+  }
+}
+
+// 動画読み込み失敗時のフォールバック
+.preheader__video video:invalid {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-accent-1) 100%
+  );
+  
+  &::after {
+    content: '動画を読み込んでいます...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+
+// アクセシビリティ対応
+@media (prefers-reduced-motion: reduce) {
+  .preheader {
+    &__content {
+      animation: none;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from, to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+} 
