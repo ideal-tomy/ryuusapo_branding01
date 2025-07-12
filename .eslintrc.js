@@ -42,4 +42,4 @@ module.exports = {
     Glide: 'readonly',
     Plyr: 'readonly',
   },
-}; 
+};
