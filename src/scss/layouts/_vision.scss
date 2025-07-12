@@ -80,89 +80,172 @@
     }
   }
   
-  // グリッドコンテナ（2カラム）
+  // グリッドコンテナ（2カラム）- 専用クラス
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: stretch;
+    max-width: 1000px;
+    margin: 0 auto;
+    
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      max-width: 600px;
+    }
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 400px;
+    }
+  }
+  
+  // 既存のgridクラス（互換性のため残す）
   .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 4rem;
     
     @include tablet {
+      grid-template-columns: 1fr;
       gap: 3rem;
     }
     
     @include mobile {
+      grid-template-columns: 1fr;
       gap: 2rem;
     }
   }
   
-  // 各アイテム
+  // 各アイテム - プレミアムデザイン強化
   &__item {
     position: relative;
-    padding: 3rem;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 24px;
-    box-shadow: 0 10px 40px rgba(0, 47, 95, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 4rem 3rem;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.85) 100%
+    );
+    border-radius: 32px;
+    box-shadow: 
+      0 8px 32px rgba(0, 47, 95, 0.08),
+      0 2px 8px rgba(0, 47, 95, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease-out;
+    transform: translateY(60px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    overflow: hidden;
     
-    &.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    // ホバー効果
-    &:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0, 47, 95, 0.15);
-    }
-    
-    // アイテム装飾
+    // 高級感のあるグラデーション背景
     &::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 4px;
+      right: 0;
+      height: 6px;
       background: linear-gradient(
         90deg,
         var(--color-accent-1) 0%,
-        var(--color-accent-2) 100%
+        var(--color-accent-2) 50%,
+        var(--color-accent-1) 100%
       );
-      border-radius: 24px 24px 0 0;
+      border-radius: 32px 32px 0 0;
     }
     
-    // ビジョンアイテム（左側）
-    &:first-child {
-      &::after {
-        content: '🌟';
-        position: absolute;
-        top: -1rem;
-        right: 2rem;
-        font-size: 2rem;
-        opacity: 0.7;
+    // 微細なテクスチャ
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="2" height="2" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.5" fill="%23000000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      border-radius: 32px;
+      pointer-events: none;
+    }
+    
+    &.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    
+    // プレミアムホバー効果
+    &:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 
+        0 24px 64px rgba(0, 47, 95, 0.15),
+        0 8px 24px rgba(0, 47, 95, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      
+      &::before {
+        background: linear-gradient(
+          90deg,
+          var(--color-accent-1) 0%,
+          var(--color-accent-2) 25%,
+          var(--color-accent-1) 50%,
+          var(--color-accent-2) 75%,
+          var(--color-accent-1) 100%
+        );
+        animation: shimmer 2s ease-in-out infinite;
       }
     }
     
-    // ミッションアイテム（右側）
+    // ビジョンアイテム（左側）- 特別なアクセント
+    &:first-child {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(0, 160, 166, 0.02) 100%
+      );
+      
+      .vision__item-title {
+        color: var(--color-accent-1);
+      }
+    }
+    
+    // ミッションアイテム（右側）- 特別なアクセント
     &:last-child {
-      &::after {
-        content: '🚀';
-        position: absolute;
-        top: -1rem;
-        right: 2rem;
-        font-size: 2rem;
-        opacity: 0.7;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 179, 128, 0.02) 100%
+      );
+      
+      .vision__item-title {
+        color: var(--color-accent-2);
       }
     }
     
     @include tablet {
-      padding: 2.5rem;
+      padding: 3rem 2.5rem;
+      border-radius: 24px;
+      
+      &::before {
+        border-radius: 24px 24px 0 0;
+      }
+      
+      &::after {
+        border-radius: 24px;
+      }
     }
     
     @include mobile {
-      padding: 2rem;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      
+      &::before {
+        border-radius: 20px 20px 0 0;
+      }
+      
+      &::after {
+        border-radius: 20px;
+      }
     }
   }
   
@@ -221,6 +304,16 @@
 }
 
 // アニメーション効果
+// プレミアムアニメーション効果
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -232,13 +325,13 @@
   }
 }
 
-// ビジョンアイテムの遅延アニメーション
+// ビジョンアイテムの遅延アニメーション - 改良版
 .vision__item:first-child {
-  transition-delay: 0.2s;
+  transition-delay: 0.3s;
 }
 
 .vision__item:last-child {
-  transition-delay: 0.4s;
+  transition-delay: 0.6s;
 }
 
 // 背景の動的効果

@@ -1,0 +1,298 @@
+// =============================================================================
+// Contact Form Layout - 留学サポート ブランディング LP
+// =============================================================================
+
+/* ====================================
+   お問い合わせフォームセクション
+   ==================================== */
+
+.contact-form {
+    padding: 8rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.5;
+        z-index: 0;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    
+    &__header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+    
+    &__title {
+        font-size: 3rem;
+        color: var(--color-primary);
+        margin-bottom: 1rem;
+        position: relative;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--color-accent-1);
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            font-size: 2.5rem;
+        }
+    }
+    
+    &__subtitle {
+        font-size: 1.2rem;
+        color: var(--color-gray);
+        margin: 0;
+        
+        @media (max-width: 768px) {
+            font-size: 1.1rem;
+        }
+    }
+    
+    &__form {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        
+        @media (max-width: 768px) {
+            padding: 2rem 1.5rem;
+        }
+    }
+    
+    &__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+    
+    &__field {
+        margin-bottom: 2rem;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    &__label {
+        display: block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+    }
+    
+    &__required {
+        color: var(--color-error, #dc3545);
+        font-weight: 700;
+    }
+    
+    &__input,
+    &__select,
+    &__textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #CCCCCC !important;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.3s ease;
+        background: #FFFFFF !important;
+        color: #333333 !important;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        
+        &:focus {
+            outline: none;
+            border-color: #00A0A6 !important;
+            box-shadow: 0 0 0 3px rgba(0, 160, 166, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        &::placeholder {
+            color: #888888 !important;
+        }
+        
+        &:invalid {
+            border-color: #dc3545 !important;
+        }
+    }
+    
+    &__textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+    
+    &__select {
+        cursor: pointer;
+        
+        option {
+            padding: 0.5rem;
+        }
+    }
+    
+    &__checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 0.5rem;
+        
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    }
+    
+    &__checkbox-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 1rem;
+        color: var(--color-gray);
+        transition: color 0.3s ease;
+        
+        &:hover {
+            color: var(--color-primary);
+        }
+    }
+    
+    &__checkbox {
+        width: 18px;
+        height: 18px;
+        margin-right: 0.5rem;
+        accent-color: var(--color-accent-1);
+        cursor: pointer;
+    }
+    
+    &__checkbox-text {
+        a {
+            color: var(--color-accent-1);
+            text-decoration: none;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    
+    &__submit {
+        text-align: center;
+        margin-top: 3rem;
+        
+        .btn {
+            min-width: 200px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+    }
+    
+    // エラーメッセージ
+    &__error {
+        color: var(--color-error, #dc3545);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: none;
+        
+        &.show {
+            display: block;
+        }
+    }
+    
+    // 成功メッセージ
+    &__success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        display: none;
+        
+        &.show {
+            display: block;
+        }
+    }
+    
+    // ローディング状態
+    &__form.loading {
+        .btn {
+            pointer-events: none;
+            opacity: 0.7;
+            position: relative;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 20px;
+                height: 20px;
+                border: 2px solid transparent;
+                border-top: 2px solid currentColor;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+        }
+    }
+    
+    // アニメーション
+    &__form {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+        
+        &.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+// スピンアニメーション
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+// アクセシビリティ対応
+@media (prefers-reduced-motion: reduce) {
+    .contact-form {
+        &__form {
+            animation: none;
+            transition: none;
+        }
+        
+        .btn::after {
+            animation: none;
+        }
+    }
+} 

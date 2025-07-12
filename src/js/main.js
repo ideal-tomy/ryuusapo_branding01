@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // FAQセクションの初期化
   initializeFAQSection();
 
+  // お問い合わせフォームの初期化
+  initializeContactFormSection();
+
   // フッターCTAセクションの初期化
   initializeFooterCTASection();
 
@@ -65,9 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function initializeBasicFeatures() {
   // スムーススクロール
   initializeSmoothScroll();
-
-  // アコーディオン
-  initializeAccordion();
 
   // フォームバリデーション
   initializeFormValidation();
@@ -94,32 +94,6 @@ function initializeSmoothScroll() {
           behavior: 'smooth',
           block: 'start',
         });
-      }
-    });
-  });
-}
-
-/**
- * アコーディオン機能
- */
-function initializeAccordion() {
-  const faqItems = document.querySelectorAll('.faq__item');
-
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq__question');
-    const answer = item.querySelector('.faq__answer');
-
-    question.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-
-      // 他のアイテムを閉じる
-      faqItems.forEach(otherItem => {
-        otherItem.classList.remove('active');
-      });
-
-      // クリックしたアイテムを開閉
-      if (!isActive) {
-        item.classList.add('active');
       }
     });
   });
@@ -1285,6 +1259,47 @@ function initializeFAQAnimation() {
   });
 
   faqItems.forEach(item => observer.observe(item));
+}
+
+/**
+ * お問い合わせフォームの初期化
+ */
+function initializeContactFormSection() {
+  const contactForm = document.querySelector('.contact-form');
+  const contactFormForm = document.querySelector('.contact-form__form');
+  
+  if (!contactForm || !contactFormForm) {return;}
+
+  // 強制的にアニメーションクラスを適用
+  setTimeout(() => {
+    contactFormForm.classList.add('animate-in');
+  }, 100);
+
+  // reduced-motion の確認
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    contactFormForm.classList.add('animate-in');
+    return;
+  }
+
+  // Intersection Observer でフォームアニメーション
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const form = entry.target.querySelector('.contact-form__form');
+        if (form) {
+          form.classList.add('animate-in');
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px',
+  });
+
+  observer.observe(contactForm);
 }
 
 /**

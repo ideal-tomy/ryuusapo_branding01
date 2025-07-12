@@ -2,8 +2,6 @@
 // FAQ Layout - 留学サポート ブランディング LP
 // =============================================================================
 
-// FAQのスタイル（後で実装） 
-
 /* ====================================
    10. FAQ & 安心の仕組みセクション
    ==================================== */
@@ -53,6 +51,7 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
         border: 2px solid transparent;
+        position: relative;
         
         &:hover {
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -63,6 +62,20 @@
             background: var(--color-white);
             border-color: var(--color-accent-1);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            
+            .faq__question {
+                color: var(--color-accent-1);
+                
+                .faq__icon {
+                    transform: rotate(45deg);
+                }
+            }
+            
+            .faq__answer {
+                max-height: 500px;
+                padding: 0 2rem 2rem;
+                opacity: 1;
+            }
         }
     }
     
@@ -83,27 +96,13 @@
         align-items: center;
         justify-content: space-between;
         
-        &::after {
-            content: '+';
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--color-accent-1);
-            transition: transform 0.3s ease;
-            min-width: 20px;
-            text-align: center;
-        }
-        
         &:hover {
             color: var(--color-accent-1);
         }
         
-        .faq__item.active & {
-            color: var(--color-accent-1);
-            
-            &::after {
-                content: '−';
-                transform: rotate(180deg);
-            }
+        &:focus {
+            outline: 2px solid var(--color-accent-1);
+            outline-offset: 2px;
         }
         
         @media (max-width: 768px) {
@@ -112,30 +111,57 @@
         }
     }
     
+    &__icon {
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: var(--color-accent-1);
+        transition: transform 0.3s ease;
+        min-width: 20px;
+        text-align: center;
+        line-height: 1;
+    }
+    
     &__answer {
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.4s ease, padding 0.4s ease;
+        transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
+        opacity: 0;
         
-        .faq__item.active & {
-            max-height: 200px;
-            padding: 0 2rem 2rem;
+        @media (max-width: 768px) {
+            .faq__item.active & {
+                padding: 0 1.5rem 1.5rem;
+            }
         }
-        
+    }
+    
+    &__answer-content {
         p {
-            margin: 0;
+            margin: 0 0 1rem 0;
             color: var(--color-gray);
             line-height: 1.6;
             font-size: 1rem;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
             
             @media (max-width: 768px) {
                 font-size: 0.9rem;
             }
         }
         
-        @media (max-width: 768px) {
-            .faq__item.active & {
-                padding: 0 1.5rem 1.5rem;
+        ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            
+            li {
+                margin: 0.5rem 0;
+                color: var(--color-gray);
+                line-height: 1.6;
+                
+                &::marker {
+                    color: var(--color-accent-1);
+                }
             }
         }
     }
@@ -156,6 +182,8 @@
         &:nth-child(2) { animation-delay: 0.2s; }
         &:nth-child(3) { animation-delay: 0.3s; }
         &:nth-child(4) { animation-delay: 0.4s; }
+        &:nth-child(5) { animation-delay: 0.5s; }
+        &:nth-child(6) { animation-delay: 0.6s; }
     }
     
     // ホバー時の背景効果
@@ -202,7 +230,7 @@
             transition: none;
         }
         
-        &__question::after {
+        &__icon {
             transition: none;
         }
         

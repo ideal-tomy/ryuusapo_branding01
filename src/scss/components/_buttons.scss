@@ -85,6 +85,28 @@
     background: var(--color-primary-darker);
     border-color: var(--color-primary-darker);
   }
+  
+  // LINEボタン専用スタイル（より高い特異性）
+  &.btn-line {
+    background: #06c755 !important;
+    color: white !important;
+    border-color: #06c755 !important;
+    
+    &:hover {
+      background: #05b84d !important;
+      border-color: #05b84d !important;
+      color: white !important;
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(6, 199, 85, 0.25) !important;
+    }
+    
+    &:active {
+      background: #04a444 !important;
+      border-color: #04a444 !important;
+    }
+  }
 }
 
 // セカンダリボタン
@@ -94,8 +116,8 @@
   border-color: var(--color-primary);
   
   &:hover {
-    background: var(--color-primary);
-    color: white;
+    background: var(--color-primary) !important;
+    color: white !important;
   }
   
   &:focus {
