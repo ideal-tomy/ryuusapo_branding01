@@ -10,8 +10,8 @@
   "scripts": {
     "build": "echo '🏗 prepare' && npm run build:prepare && echo '🎨 css' && npm run build:css && echo '📦 js' && npm run build:js && echo '📂 assets' && npm run copy:assets",
     "build:prepare": "node -e \"const fs = require('fs'); ['dist', 'dist/css', 'dist/js', 'dist/images'].forEach(dir => fs.mkdirSync(dir, {recursive: true}))\"",
-    "build:css": "echo 'Running build:css' && npm exec sass src/scss/main.scss dist/css/main.css --style=compressed && npm exec postcss dist/css/main.css --use autoprefixer -r",
-    "build:js": "echo 'Running build:js' && npm exec terser src/js/main.js -o dist/js/main.js --compress --mangle",
+    "build:css": "npm exec sass src/scss/main.scss dist/css/main.css --style=compressed && npm exec postcss dist/css/main.css --use autoprefixer -r",
+    "build:js": "npm exec terser src/js/main.js -o dist/js/main.js --compress --mangle",
     "build:dev": "npm run build:prepare && npm run build:css:dev && npm run build:js:dev && npm run copy:assets",
     "build:css:dev": "npm exec sass src/scss/main.scss dist/css/main.css --style expanded",
     "build:js:dev": "node -e \"const fs = require('fs'); fs.mkdirSync('dist/js', {recursive: true}); fs.copyFileSync('src/js/main.js', 'dist/js/main.js')\"",
@@ -28,6 +28,7 @@
     "validate": "npm run lint && npm run format",
     "vercel-build": "npm run build"
   },
+  "postinstall": "chmod +x node_modules/.bin/sass && chmod +x node_modules/.bin/postcss && chmod +x node_modules/.bin/terser",
   "keywords": [
     "留学サポート",
     "ブランディング",
@@ -40,21 +41,21 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.0.0",
-    "autoprefixer": "^10.4.16",
+    "autoprefixer": "^10.4.21",
     "chokidar-cli": "^3.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "live-server": "^1.2.2",
-    "postcss": "^8.4.32",
+    "postcss": "^8.5.6",
     "postcss-cli": "^11.0.0",
     "prettier": "^3.1.1",
     "rimraf": "^5.0.5",
-    "sass": "^1.69.5",
+    "sass": "^1.89.2",
     "terser": "^5.26.0"
   },
   "dependencies": {
-    "gsap": "^3.12.2",
     "@glidejs/glide": "^3.6.0",
+    "gsap": "^3.12.2",
     "plyr": "^3.7.8"
   },
   "browserslist": [
@@ -62,5 +63,4 @@
     "> 1%",
     "not dead"
   ]
-} 
-
+}
