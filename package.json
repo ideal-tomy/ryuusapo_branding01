@@ -41,22 +41,22 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.0.0",
-    "autoprefixer": "^10.4.21",
     "chokidar-cli": "^3.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "live-server": "^1.2.2",
-    "postcss": "^8.5.6",
-    "postcss-cli": "^11.0.0",
     "prettier": "^3.1.1",
-    "rimraf": "^5.0.5",
-    "sass": "^1.89.2",
-    "terser": "^5.26.0"
+    "rimraf": "^5.0.5"
   },
   "dependencies": {
     "@glidejs/glide": "^3.6.0",
+    "autoprefixer": "^10.4.21",
     "gsap": "^3.12.2",
-    "plyr": "^3.7.8"
+    "plyr": "^3.7.8",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.89.2",
+    "terser": "^5.26.0"
   },
   "browserslist": [
     "last 2 versions",
