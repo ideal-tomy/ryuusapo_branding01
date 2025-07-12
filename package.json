@@ -10,13 +10,13 @@
   "scripts": {
     "build": "echo '🏗 prepare' && npm run build:prepare && echo '🎨 css' && npm run build:css && echo '📦 js' && npm run build:js && echo '📂 assets' && npm run copy:assets",
     "build:prepare": "node -e \"const fs = require('fs'); ['dist', 'dist/css', 'dist/js', 'dist/images'].forEach(dir => fs.mkdirSync(dir, {recursive: true}))\"",
-    "build:css": "npm exec sass src/scss/main.scss dist/css/main.css --style=compressed && npm exec postcss dist/css/main.css --use autoprefixer -r",
-    "build:js": "npm exec terser src/js/main.js -o dist/js/main.js --compress --mangle",
+    "build:css": "node node_modules/sass/sass.js src/scss/main.scss dist/css/main.css --style=compressed && node node_modules/postcss/lib/cli.js dist/css/main.css --use autoprefixer -r",
+    "build:js": "node node_modules/terser/bin/terser src/js/main.js -o dist/js/main.js --compress --mangle",
     "build:dev": "npm run build:prepare && npm run build:css:dev && npm run build:js:dev && npm run copy:assets",
-    "build:css:dev": "npm exec sass src/scss/main.scss dist/css/main.css --style expanded",
+    "build:css:dev": "node node_modules/sass/sass.js src/scss/main.scss dist/css/main.css --style expanded",
     "build:js:dev": "node -e \"const fs = require('fs'); fs.mkdirSync('dist/js', {recursive: true}); fs.copyFileSync('src/js/main.js', 'dist/js/main.js')\"",
     "watch": "npm run watch:css & npm run watch:js",
-    "watch:css": "npm exec sass --watch src/scss/main.scss dist/css/main.css --style expanded",
+    "watch:css": "node node_modules/sass/sass.js --watch src/scss/main.scss dist/css/main.css --style expanded",
     "watch:js": "chokidar 'src/js/**/*.js' -c 'npm run build:js:dev'",
     "serve": "live-server dist --port=3000 --open=/",
     "dev": "npm run build:dev && npm run watch & npm run serve",
@@ -28,7 +28,7 @@
     "validate": "npm run lint && npm run format",
     "vercel-build": "npm run build"
   },
-  "postinstall": "chmod +x node_modules/.bin/sass && chmod +x node_modules/.bin/postcss && chmod +x node_modules/.bin/terser",
+  "postinstall": "chmod +x node_modules/.bin/*",
   "keywords": [
     "留学サポート",
     "ブランディング",
