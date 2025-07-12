@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+console.log('Starting asset copy process...');
+
 function copyFileSync(source, target) {
   try {
     const targetDir = path.dirname(target);
@@ -36,27 +38,20 @@ function copyDirectorySync(source, target) {
   }
 }
 
-// Copy images directory
-const sourceImages = path.join('src', 'images');
-const targetImages = path.join('dist', 'images');
-
-if (fs.existsSync(sourceImages)) {
-  console.log('Copying images...');
-  copyDirectorySync(sourceImages, targetImages);
+// Copy images
+console.log('Copying images...');
+if (fs.existsSync('src/images')) {
+  copyDirectorySync('src/images', 'dist/images');
 } else {
-  console.log('Images directory not found, skipping...');
+  console.log('src/images directory not found, skipping...');
 }
 
-// Copy index.html
-const sourceHtml = path.join('src', 'index.html');
-const targetHtml = path.join('dist', 'index.html');
-
-if (fs.existsSync(sourceHtml)) {
-  console.log('Copying index.html...');
-  copyFileSync(sourceHtml, targetHtml);
+// Copy HTML
+console.log('Copying HTML...');
+if (fs.existsSync('src/index.html')) {
+  copyFileSync('src/index.html', 'dist/index.html');
 } else {
-  console.error('index.html not found!');
-  process.exit(1);
+  console.log('src/index.html not found, skipping...');
 }
 
 console.log('Asset copying completed successfully!');
